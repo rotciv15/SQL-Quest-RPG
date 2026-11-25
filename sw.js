@@ -1,16 +1,8 @@
-const CACHE_NAME = 'sql-quest-rpg-v1';
+const CACHE_NAME = 'sql-quest-rpg-v3';
 const CORE_ASSETS = [
   './',
   './index.html',
-  './styles.css',
-  './manifest.webmanifest',
-  './assets/icon.svg',
-  './js/rpg-state.js',
-  './js/db-engine.js',
-  './js/curriculum-part1.js',
-  './js/curriculum-part2.js',
-  './js/generator.js',
-  './js/app.js'
+  './manifest.webmanifest'
 ];
 
 self.addEventListener('install', (event) => {
@@ -30,17 +22,14 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const networkFetch = fetch(event.request)
-        .then((res) => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || networkFetch;
-    })
+    fetch(event.request)
+      .then((res) => {
+        if (res && res.status === 200) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
