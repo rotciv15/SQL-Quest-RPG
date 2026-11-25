@@ -1,0 +1,20 @@
+{
+  "name": "SQL Quest RPG · Rumbo a Nivel 2 (60h)",
+  "short_name": "SQL Quest",
+  "description": "Entrenador estilo Duolingo + RPG de T-SQL y Operations BI para alcanzar el Nivel 2 (60 horas / Entrevistas EE. UU.).",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b101b",
+  "theme_color": "#0b101b",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
