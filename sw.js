@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sql-quest-rpg-v3';
+const CACHE_NAME = 'bi-quest-academy-v5';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -20,7 +20,10 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+  // Ignorar peticiones que no sean GET o que vayan al backend /api/
+  if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
+    return;
+  }
   event.respondWith(
     fetch(event.request)
       .then((res) => {
